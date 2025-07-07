@@ -15,7 +15,7 @@ extension NSImage {
     ///   - horizontal: Flip the image horizontally (around the y axis).
     ///   - vertical: Flip the image vertically (around the x axis).
     /// - Returns: The flipped version of the image.
-    func flipped(horizontal: Bool = false, vertical: Bool = false) -> NSImage {
+    public func flipped(horizontal: Bool = false, vertical: Bool = false) -> NSImage {
         let flippedImage = NSImage(size: size, flipped: false) { [self] rect in
             NSGraphicsContext.saveGraphicsState()
 
