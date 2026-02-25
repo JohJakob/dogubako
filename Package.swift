@@ -8,7 +8,7 @@ let package = Package(
     name: "dogubako",
     platforms: [
         .macOS(.v12),
-        .iOS(.v12),
+        .iOS(.v15),
         .watchOS(.v4),
         .tvOS(.v12),
         .visionOS(.v1)
