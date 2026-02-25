@@ -58,7 +58,7 @@ private struct UniversalSafeAreaBar<Bar: View>: ViewModifier {
 					bar
 				}
 				.navigationBarTitleDisplayMode(edge == .top ? .inline : .automatic)
-		} else {
+		} else if #available(iOS 18.0, *) {
 			content
 				.safeAreaInset(edge: edge, alignment: alignment, spacing: spacing) {
 					bar
@@ -68,6 +68,15 @@ private struct UniversalSafeAreaBar<Bar: View>: ViewModifier {
 						}
 				}
 				.toolbarBackgroundVisibility(toolbarBackgroundHidden ? .hidden : .automatic)
+		} else {
+			content
+				.safeAreaInset(edge: edge, alignment: alignment, spacing: spacing) {
+					bar
+						.background(.regularMaterial)
+						.overlay(alignment: edge == .top ? .bottom : .top) {
+							Divider()
+						}
+				}
 		}
 	}
 	#endif
@@ -87,7 +96,7 @@ extension View {
 	///   - alignment: The alignment guide used to position `bar` horizontally.
 	///   - spacing: Extra distance placed between the two views, or nil to use the default amount of spacing.
 	///   - toolbarBackgroundHidden: A Boolean value to specify whether to hide the background of the toolbar at the edge where `bar` is placed
-	///   on platforms where `safeAreaBar` is not available.
+	///   on iOS 18..
 	///   - bar: A view builder function providing the view to display as a custom bar.
 	/// - Returns: A new view that displays `bar` above or below the modified view, making space for the `bar` view by vertically insetting the
 	/// modified view, adjusting the safe area and scroll edge effects (if available) to match.
