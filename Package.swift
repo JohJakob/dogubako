@@ -7,7 +7,7 @@ import CompilerPluginSupport
 let package = Package(
     name: "dogubako",
     platforms: [
-        .macOS(.v10_13),
+        .macOS(.v12),
         .iOS(.v12),
         .watchOS(.v4),
         .tvOS(.v12),
